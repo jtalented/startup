@@ -6,4 +6,8 @@ One of the timeless classic games that has been around since the 1950s, Mad libs
 
 ## Design
 ![Picture of login information](https://github.com/jtalented/startup/blob/main/login%20picture.png)
+The application will have a simple login page where a database is used to validate and add new users
+
+The application itself will immediately generate an input prompt for the user with the associated word types. From this page, the user can submit their words (which are validated to not be empty before submission) as well as view recent submissions (last 10) by all users. When a user submits their prompt, the resulting information is added to the text, and the story is displayed to the user. The user can then download the text as .txt file. At any point, the user may request a new prompt or logout.
+![The draft image for the main page of the mad lib application](https://github.com/jtalented/startup/blob/main/main%20page.png)
 
