@@ -32,11 +32,11 @@ These technologies will be used as follows.
 
 # Plan
 
-## HTML
-- Create page structure using two HTML pages
-- Page data will be displayed through text
-- Buttons and textboxes for input and submission
-- Link to view the recent submissions
+  ## HTML
+  - Create page structure using two HTML pages
+  - Page data will be displayed through text
+  - Buttons and textboxes for input and submission
+  - Link to view the recent submissions
 
   ## CSS
   - Page Header/Logo?
