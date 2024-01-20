@@ -1,3 +1,4 @@
+
 # Mad Lib
 This application is a mad lib that allows users to generate prompts and fill in the associated words to create fun stories and responses.
 
