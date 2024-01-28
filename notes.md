@@ -31,6 +31,25 @@ Web Server Host name
 260madlib.click
 
 Caddy allows for secure connection using third party verfication
-=======
-Changes need to be pulled from the origin, and then pushed to Github to the main branch. From this assignment I learned how to properly perform merges between branches and resolve conflicts.
->>>>>>> Stashed changes
+
+
+
+# HTML
+
+Only thing rendered in headers is the title line.
+
+Following headers is the navigation elements.
+
+Body has the content.
+
+Footer has the span (Author)
+
+Has an anchor with a link to the repository.
+
+
+
+Play.html scores and about all have the same headers and footers.
+
+
+
+
