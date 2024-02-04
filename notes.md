@@ -52,4 +52,15 @@ Play.html scores and about all have the same headers and footers.
 
 
 
+restart caddy
+sudo service caddy restart
+
+
+./deployFiles.sh -k C:/Users/Jayden/Downloads/production.pem -h 260madlib.click -s simon
+
+
+ssh into caddy
+
+ssh -i C:/Users/Jayden/Downloads/production.pem ubuntu@260madlib.click
+
 
