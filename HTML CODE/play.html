@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAD LIBS Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            margin-right: 8px;
+            height: 32px; /* Adjust the height as needed */
+            width: 32px; /* Adjust the width as needed */
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .form-container {
+            width: 40%;
+            padding: 10px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .results-container {
+            width: 40%;
+            padding: 10px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #saveSubmitButton {
+            margin-top: 20px;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">Logout</a>
+        <h1>
+            <img src="pencil.png" alt="Pencil Icon">
+            MAD LIBS
+        </h1>
+        <p>USERNAME</p>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <label for="noun">Noun:</label>
+            <input type="text" id="noun" name="noun" required>
+
+            <label for="adjective">Adjective:</label>
+            <input type="text" id="adjective" name="adjective" required>
+
+            <label for="noun2">Noun:</label>
+            <input type="text" id="noun2" name="noun2" required>
+
+            <label for="adverb">Adverb:</label>
+            <input type="text" id="adverb" name="adverb" required>
+
+            <label for="adjective2">Adjective:</label>
+            <input type="text" id="adjective2" name="adjective2" required>
+
+            <label for="noun3">Noun:</label>
+            <input type="text" id="noun3" name="noun3" required>
+
+            <button id="saveSubmitButton">Save/Submit</button>
+        </div>
+
+        <div class="results-container">
+            <div>Show generated results</div>
+            <button>Download</button>
+        </div>
+    </main>
+
+    <footer>
+        <button>Generate New Prompt</button>
+        <a href="prompts.html">View Recent Submissions</a>
+    </footer>
+
+</body>
+</html>
