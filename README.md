@@ -34,18 +34,18 @@ These technologies will be used as follows.
 # Plan
 
   ## HTML
-  - Create page structure using two HTML pages - done (uses 4 pages)
-  - Page data will be displayed through text - done
-  - Buttons and textboxes for input and submission - done
-  - Link to view the recent submissions - done (populated with examples)
+  - Create page structure using two HTML pages - [x] (uses 4 pages)
+  - Page data will be displayed through text - [x]
+  - Buttons and textboxes for input and submission - [x]
+  - Link to view the recent submissions - [x] (populated with examples)
 
   ## CSS
-  - Page Header/Logo?
-  - Main body and design
-  - Navigation links
-  - Page structure/good design applications
-  - Coloring
-  - Images?
+  - Page Header/Logo [x] Added logo to about page
+  - Main body and design [x] Added css references for all pages
+  - Navigation links [x] added styling for links
+  - Page structure/good design applications [x] created standardized page styling
+  - Coloring [x] standardized word coloring and formatting
+  - Images [x] used images in headers and used css to format them
 
   ## JavaScript
   - Database access
