@@ -64,3 +64,6 @@ ssh into caddy
 ssh -i C:/Users/Jayden/Downloads/production.pem ubuntu@260madlib.click
 
 
+All updates are marked as done in the readme.md
+
+
