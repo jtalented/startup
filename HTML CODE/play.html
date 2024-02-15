@@ -1,79 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAD LIBS Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        h1 {
-            display: flex;
-            align-items: center;
-        }
-
-        img {
-            margin-right: 8px;
-            height: 32px; /* Adjust the height as needed */
-            width: 32px; /* Adjust the width as needed */
-        }
-
-        main {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-
-        .form-container {
-            width: 40%;
-            padding: 10px;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .results-container {
-            width: 40%;
-            padding: 10px;
-        }
-
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            bottom: 20px;
-            width: 100%;
-        }
-
-        button {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        #saveSubmitButton {
-            margin-top: 20px;
-            align-self: center;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MAD LIBS Play</title>
+        <link rel="stylesheet" href="play.css"> <!-- Reference the play.css stylesheet -->
+    </head>
 <body>
 
     <header>
@@ -82,37 +14,58 @@
             <img src="pencil.png" alt="Pencil Icon">
             MAD LIBS
         </h1>
-        <p>USERNAME</p>
+        <p>USERNAME <span class="game-connected">Game Connected</span></p>
     </header>
 
     <main>
         <div class="form-container">
-            <label for="noun">Noun:</label>
-            <input type="text" id="noun" name="noun" required>
-
-            <label for="adjective">Adjective:</label>
-            <input type="text" id="adjective" name="adjective" required>
-
+            <label for="noun1">Noun:</label>
+            <input type="text" id="noun1" name="noun1" required>
+    
+            <label for="adjective1">Adjective:</label>
+            <input type="text" id="adjective1" name="adjective1" required>
+    
             <label for="noun2">Noun:</label>
             <input type="text" id="noun2" name="noun2" required>
-
-            <label for="adverb">Adverb:</label>
-            <input type="text" id="adverb" name="adverb" required>
-
+    
+            <label for="adverb1">Adverb:</label>
+            <input type="text" id="adverb1" name="adverb1" required>
+    
             <label for="adjective2">Adjective:</label>
             <input type="text" id="adjective2" name="adjective2" required>
-
+    
             <label for="noun3">Noun:</label>
             <input type="text" id="noun3" name="noun3" required>
-
+    
+            <!-- New input boxes -->
+            <label for="verb1">Verb:</label>
+            <input type="text" id="verb1" name="verb1" required>
+    
+            <label for="color1">Color:</label>
+            <input type="text" id="color1" name="color1" required>
+    
+            <label for="adjective3">Adjective:</label>
+            <input type="text" id="adjective3" name="adjective3" required>
+    
+            <label for="adverb2">Adverb:</label>
+            <input type="text" id="adverb2" name="adverb2" required>
+    
+            <label for="noun4">Noun:</label>
+            <input type="text" id="noun4" name="noun4" required>
+    
+            <label for="verb2">Verb:</label>
+            <input type="text" id="verb2" name="verb2" required>
+    
             <button id="saveSubmitButton">Save/Submit</button>
         </div>
-
+    
         <div class="results-container">
-            <div>Show generated results</div>
+            <div>Mad Lib Prompt</div>
+            <textarea id="story" name="story" rows="8" cols="50" placeholder="The Mad Lib will be generated here" readonly></textarea>
             <button>Download</button>
         </div>
     </main>
+    
 
     <footer>
         <button>Generate New Prompt</button>

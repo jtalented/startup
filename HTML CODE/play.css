@@ -1,0 +1,123 @@
+header, main, footer {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+}
+
+.game-controls {
+    position: absolute;
+}
+
+.input-field {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: auto; 
+    max-width: 150px;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: row !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .hide-on-small-screen {
+        display: none; /* Hide content when screen is too small */
+    }
+}
+
+body {
+    background-color: #1a1a1a; 
+    color: #fff;
+}
+
+header {
+    background-color: #333;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space items apart */
+    padding: 10px;
+}
+
+.game-connected {
+    color: orange;
+    font-weight: bold;
+}
+
+
+img {
+    height: 64px;
+    margin-right: 8px; 
+}
+
+nav {
+    margin-right: 10px;
+}
+
+nav a {
+    color: #ff00ff; 
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: #333;
+    color: #00ff00; 
+}
+
+button {
+    background-color: #6e7275;
+    color: #15ff00;
+}
+
+section {
+    margin: 20px 0;
+}
+
+p {
+    color: #00ffff; 
+}
+
+a {
+    color: #ffff00;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container {
+    width: 45%; /* Adjust the width later if I need to */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.results-container {
+    width: 45%;
+    padding: 10px;
+}
+
+
+#story {
+    height: 400px; 
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
