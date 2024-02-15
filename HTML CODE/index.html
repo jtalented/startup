@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAD LIB Login Form</title>
+    <title>MAD LIB</title>
+    <!-- Add CSS reference for index.css -->
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
     <header>
         <img src="words.jpg" alt="Word Icon" style="height: 256px; width: 256px; margin-right: 8px;">
-        <h1>MAD LIB Login Form</h1>
+        <h1>MAD LIBS</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="play.html">Play</a>
@@ -18,20 +20,24 @@
         </nav>
     </header>
 
-    <hr> <!-- Spacing -->
+    <!-- Login form section -->
+    <section>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
 
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
 
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Author Jayden Allen</p>
-    <p>Visit our GitHub repository: <a href="https://github.com/jtalented/startup.git" target="_blank">GITHUB</a></p>
+    <!-- Links section -->
+    <section>
+        <p>Author Jayden Allen</p>
+        <p>Visit our GitHub repository: <a href="https://github.com/jtalented/startup.git" target="_blank">GITHUB</a></p>
+    </section>
 
 </body>
 </html>
