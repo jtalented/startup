@@ -48,11 +48,13 @@ These technologies will be used as follows.
   - Images [x] used images in headers and used css to format them
 
   ## JavaScript
-  - Database access
-  - Communication for submissions between all users
-  - Animation?
-  - Logic for a prompt generation as well as displaying the result
-  - Ensures valid input
+  - Communication for submissions between all users [x]
+  - Prompt download [x]
+  - Logic for a prompt generation as well as displaying the result [x]
+  - Ensures valid input [x]
+  - Local variable storage [x]
+  - Update prompt table [x]
+  - Once database access is created updates (generate new prompt), (Usernames/passwords),(txtbox labels updated), (previous prompts table updated)
  
   ## Service/Database
   - Ensure valid database connection to obtain prompts

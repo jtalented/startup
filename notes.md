@@ -66,4 +66,8 @@ ssh -i C:/Users/Jayden/Downloads/production.pem ubuntu@260madlib.click
 
 All updates are marked as done in the readme.md
 
+Javascript:
 
+Look into adding more login logic, as well as further testing on logout logic.
+
+Prompts javascript will need further updating too once the database connection is created.

@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MAD LIBS Play</title>
-        <link rel="stylesheet" href="play.css"> <!-- Reference the play.css stylesheet -->
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAD LIBS Play</title>
+    <link rel="stylesheet" href="play.css"> <!-- Reference the play.css stylesheet -->
+    <script src="play.js"></script>
+</head>
 <body>
 
-    <header>
-        <a href="index.html">Logout</a>
-        <h1>
-            <img src="pencil.png" alt="Pencil Icon">
-            MAD LIBS
-        </h1>
-        <p>USERNAME <span class="game-connected">Game Connected</span></p>
-    </header>
+<header>
+    <a href="index.html">Logout</a>
+    <h1>
+        <img src="pencil.png" alt="Pencil Icon">
+        MAD LIBS
+    </h1>
+    <p>USERNAME <span class="game-connected">Game Connected</span></p>
+</header>
 
-    <main>
-        <div class="form-container">
-            <label for="noun1">Noun:</label>
-            <input type="text" id="noun1" name="noun1" required>
-    
-            <label for="adjective1">Adjective:</label>
-            <input type="text" id="adjective1" name="adjective1" required>
-    
-            <label for="noun2">Noun:</label>
-            <input type="text" id="noun2" name="noun2" required>
-    
-            <label for="adverb1">Adverb:</label>
-            <input type="text" id="adverb1" name="adverb1" required>
-    
-            <label for="adjective2">Adjective:</label>
-            <input type="text" id="adjective2" name="adjective2" required>
-    
-            <label for="noun3">Noun:</label>
-            <input type="text" id="noun3" name="noun3" required>
-    
-            <!-- New input boxes -->
-            <label for="verb1">Verb:</label>
-            <input type="text" id="verb1" name="verb1" required>
-    
-            <label for="color1">Color:</label>
-            <input type="text" id="color1" name="color1" required>
-    
-            <label for="adjective3">Adjective:</label>
-            <input type="text" id="adjective3" name="adjective3" required>
-    
-            <label for="adverb2">Adverb:</label>
-            <input type="text" id="adverb2" name="adverb2" required>
-    
-            <label for="noun4">Noun:</label>
-            <input type="text" id="noun4" name="noun4" required>
-    
-            <label for="verb2">Verb:</label>
-            <input type="text" id="verb2" name="verb2" required>
-    
-            <button id="saveSubmitButton">Save/Submit</button>
-        </div>
-    
-        <div class="results-container">
-            <div>Mad Lib Prompt</div>
-            <textarea id="story" name="story" rows="8" cols="50" placeholder="The Mad Lib will be generated here" readonly></textarea>
-            <button>Download</button>
-        </div>
-    </main>
-    
+<main>
+    <div class="form-container">
+        <label for="txt1">Noun:</label>
+        <input type="text" id="txt1" name="txt1" required>
 
-    <footer>
-        <button>Generate New Prompt</button>
-        <a href="prompts.html">View Recent Submissions</a>
-    </footer>
+        <label for="txt2">Adjective:</label>
+        <input type="text" id="txt2" name="txt2" required>
+
+        <label for="txt3">Noun:</label>
+        <input type="text" id="txt3" name="txt3" required>
+
+        <label for="txt4">Adverb:</label>
+        <input type="text" id="txt4" name="txt4" required>
+
+        <label for="txt5">Adjective:</label>
+        <input type="text" id="txt5" name="txt5" required>
+
+        <label for="txt6">Noun:</label>
+        <input type="text" id="txt6" name="txt6" required>
+
+        <!-- New input boxes -->
+        <label for="txt7">Verb:</label>
+        <input type="text" id="txt7" name="txt7" required>
+
+        <label for="txt8">Color:</label>
+        <input type="text" id="txt8" name="txt8" required>
+
+        <label for="txt9">Adjective:</label>
+        <input type="text" id="txt9" name="txt9" required>
+
+        <label for="txt10">Adverb:</label>
+        <input type="text" id="txt10" name="txt10" required>
+
+        <label for="txt11">Noun:</label>
+        <input type="text" id="txt11" name="txt11" required>
+
+        <label for="txt12">Verb:</label>
+        <input type="text" id="txt12" name="txt12" required>
+
+        <button id="saveSubmitButton">Save/Submit</button>
+    </div>
+
+    <div class="results-container">
+        <div>Mad Lib Prompt</div>
+        <textarea id="story" name="story" rows="8" cols="50" placeholder="" readonly></textarea>
+        <button>Download</button>
+    </div>
+</main>
+
+
+<footer>
+    <button>Generate New Prompt</button>
+    <a href="prompts.html">View Recent Submissions</a>
+</footer>
 
 </body>
 </html>
