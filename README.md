@@ -56,7 +56,16 @@ These technologies will be used as follows.
   - Update prompt table [x]
   - Once database access is created updates (generate new prompt), (Usernames/passwords),(txtbox labels updated), (previous prompts table updated)
  
-  ## Service/Database
+  ## Service
+  - Create backend server for API endpoints [x]
+  - Establish frontend connections for API endpoints [x]
+  - Validate json objects can be created sent, and read by frontend and backend [x]
+  - Ensure username, date, and prompts are sent to backend for storing [x]
+  - Ensure GET works on the recent prompts page [x]
+  - Ensure random word generator 3rd party API call works on home page [x]
+  - Testing [x]
+
+  ## Database
   - Ensure valid database connection to obtain prompts
   - Make sure a valid user is logging in or a new user needs to be created
   - Ensure secure communication for users
