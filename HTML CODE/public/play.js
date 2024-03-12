@@ -2,11 +2,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // get username
     const username = localStorage.getItem('username');
 
-    // update label with username
-    if (username) {
-        const usernameLabel = document.querySelector('.game-connected');
-        usernameLabel.textContent = username;
+    // If username is null, set it to "Anonymous"
+    if (!username) {
+        username = "Anonymous";
+        localStorage.setItem('username', username); // Save to localStorage
     }
+
+    // update label with username
+    const usernameLabel = document.querySelector('.game-connected');
+    usernameLabel.textContent = username;
 
     // Add listener to the Save/Submit button
     document.getElementById("saveSubmitButton").addEventListener("click", function(event) {
@@ -42,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Save the prompt to local storage
             localStorage.setItem('madLibPrompt', prompt);
+            // Save the prompt to the backend
+            savePromptToBackend(username, prompt);
 
             // Clear text boxes
             clearTextBoxes();
@@ -49,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Display an error message if any text box is empty
             alert("Please fill in all the text boxes.");
         }
+
     });
 
     // allow only numbers and letters
@@ -88,7 +95,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+// Add event listener to the "Email" button
+document.getElementById("emailButton").addEventListener("click", function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
 
+    // Prompt the user for their email address
+    const userEmail = prompt("Please enter your email address:");
+
+    // Check if the user entered an email address
+    if (userEmail) {
+        // Get the prompt from the textarea
+        const prompt = document.getElementById("story").value;
+
+        // Check if the prompt is not empty
+        if (prompt.trim() !== "") {
+            // Send email
+            sendEmail(userEmail, prompt);
+        } else {
+            // Display an error message if the prompt is empty
+            alert("The prompt is empty. Please generate a prompt before sending the email.");
+        }
+    } else {
+        // Display an error message if the user cancels the prompt
+        alert("Email address not provided. Please enter your email address to send the email.");
+    }
+});
 
 
 });
@@ -111,3 +143,75 @@ function clearTextBoxes() {
 
 
 
+// Function to send email
+function sendEmail(email, prompt) {
+    // Define email data
+    const emailData = {
+        to: email,
+        subject: 'Mad Libs Prompt',
+        body: prompt
+    };
+
+    // Send email data to the server
+    fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Email sent successfully');
+        } else {
+            throw new Error('Failed to send email');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to send email');
+    });
+}
+
+// Function to save the prompt to the backend
+function savePromptToBackend(username, prompt) {
+    // Get the current date
+    const currentDate = formatDate(new Date());
+
+    // Define data to be sent to the server
+    const postData = {
+        username: username,
+        date: currentDate,
+        prompt: prompt
+    };
+
+    // Log postData to console
+    console.log('POST Data:', postData);
+
+    // Make a POST request to save the prompt to the backend
+    fetch('/api/submitPrompt', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => {
+        if (response.ok) {
+            clearTextBoxes();
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+// Function to format the date as DD/MM/YYYY
+function formatDate(date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
