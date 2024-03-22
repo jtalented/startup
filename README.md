@@ -76,3 +76,4 @@ These technologies will be used as follows.
   - When a user submits a prompt have it saved to the database [x]
   - Change homepage to force login before accessing other pages [x]
   - If the user enters the url for a non homepage have it validate they are logged in otherwise direct them to homepage [x]
+  - Encrypts passwords [x]
