@@ -65,7 +65,7 @@ These technologies will be used as follows.
   - Ensure random word generator 3rd party API call works on home page [x]
   - Testing [x]
 
-  ## Database
+  ## Database and Startup Login
   - Ensure valid database connection to mongodb [x]
   - Checks if username has already been created [x]
   - If not create a new user and return new user welcome message [x]
