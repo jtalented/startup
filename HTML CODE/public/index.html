@@ -7,38 +7,49 @@
     <!-- Add CSS reference for index.css -->
     <link rel="stylesheet" href="index.css">
     <script src="login.js"></script>
-
 </head>
 <body>
 
-    <header>
-        <img src="words.jpg" alt="Word Icon" style="height: 256px; width: 256px; margin-right: 8px;">
-        <h1>MAD LIBS</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="play.html">Play</a>
-            <a href="prompts.html">Recent Prompts</a>
-            <a href="about.html">About</a>
-        </nav>
-    </header>
+<header>
+    <img src="words.jpg" alt="Word Icon" style="height: 256px; width: 256px; margin-right: 8px;">
+    <h1>MAD LIBS</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <!--<a href="play.html">Play</a> -->
+        <!--<a href="prompts.html">Recent Prompts</a> -->
+        <!--<a href="about.html">About</a> -->
+    </nav>
+</header>
 
-    <!-- Login form section -->
-    <section>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter username" required>
+<!-- Login form section -->
+<section id="loginSection">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter username" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password" required>
 
-            <button class="btn btn-primary" onclick="login()">Login</button>
-    </section>
+    <button class="btn btn-primary" onclick="login()">Login</button>
+</section>
 
-    <!-- Links section -->
-    <section>
-        <p id="random-word-generator">Random Word Generator: </p>
-        <p>Author Jayden Allen</p>
-        <p>Visit our GitHub repository: <a href="https://github.com/jtalented/startup.git" target="_blank">GITHUB</a></p>
-    </section>
+<!-- Play and logout section (Initially hidden) -->
+<section id="playSection" style="display: none;">
+    <button class="btn btn-primary" onclick="window.location.href = 'play.html';">Play</button>
+    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+</section>
 
+<!-- Links section -->
+<section>
+    <p id="random-word-generator">Random Word Generator: </p>
+    <p>Author Jayden Allen</p>
+    <p>Visit our GitHub repository: <a href="https://github.com/jtalented/startup.git" target="_blank">GITHUB</a></p>
+</section>
+
+<!-- Bootstrap JS (Assuming you're using Bootstrap) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- Fetch and append random word -->
+<script>
+    fetchAndAppendRandomWord();
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-function login() {
+async function login() {
     // Get the input values
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;
@@ -9,45 +9,71 @@ function login() {
         return;
     }
 
-    // Store the username and password in local storage
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-
-    // Redirect the to play.html
-    window.location.href = "play.html";
-}
-
-
-// Function to fetch and append random word to HTML
-async function fetchAndAppendRandomWord() {
     try {
-        // Make API call to fetch random word
-        const response = await fetch('https://random-word.ryanrk.com/api/en/word/random');
-        if (!response.ok) {
-            throw new Error('Failed to fetch random word');
-        }
-        const data = await response.json();
+        // Make a POST request to the server for login
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        });
 
-        let randomWord;
-        // Check if the response data is an array and has at least one word
-        if (Array.isArray(data) && data.length > 0) {
-            // Access the first word from the array
-            randomWord = data[0];
+        // If login is successful
+        if (response.ok) {
+            // Show welcome message based on whether it's a new user or returning user
+            const data = await response.json();
+            const isNewUser = data.newUser;
+            if (isNewUser) {
+                alert(`Welcome, ${username}! You are a new user.`);
+            } else {
+                alert(`Welcome back, ${username}!`);
+            }
+
+            // Set logged in status and username in local storage
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('username', username);
+            
+            // Redirect to play.html
+            window.location.href = "play.html";
         } else {
-            // Use the word directly if it's not an array
-            randomWord = data.word;
+            // If login fails, show error message
+            const body = await response.json();
+            const errorMessage = body.error || 'Login failed';
+            alert(`Login failed: ${errorMessage}`);
         }
-
-        // Append the random word to the HTML
-        const randomWordGenerator = document.querySelector('#random-word-generator');
-        randomWordGenerator.textContent = `Random Word Generator: ${randomWord}`;
     } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to fetch random word');
+        alert('Failed to login');
     }
 }
 
+// Function to check if user is logged in and adjust UI accordingly
+function checkLoginStatus() {
+    const loggedIn = localStorage.getItem('loggedIn');
+    const loginSection = document.getElementById('loginSection');
+    const playSection = document.getElementById('playSection');
+
+    if (loggedIn) {
+        // User is logged in, show play/logout section and hide login section
+        loginSection.style.display = 'none';
+        playSection.style.display = 'block';
+    } else {
+        // User is not logged in, show login section and hide play/logout section
+        loginSection.style.display = 'block';
+        playSection.style.display = 'none';
+    }
+}
+
+// Function to log out the user
+function logout() {
+    // Remove the logged in status and username from local storage
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('username');
+    // Redirect to index.html to reload
+    window.location.href = "index.html";
+}
 
 
-// Call the function to fetch and append random word when the DOM content is loaded
-document.addEventListener("DOMContentLoaded", fetchAndAppendRandomWord);
+
+// Check login status when page is loaded
+window.onload = checkLoginStatus;

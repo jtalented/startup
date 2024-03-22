@@ -66,7 +66,13 @@ These technologies will be used as follows.
   - Testing [x]
 
   ## Database
-  - Ensure valid database connection to obtain prompts
-  - Make sure a valid user is logging in or a new user needs to be created
-  - Ensure secure communication for users
-  - Allow users to access the resulting text
+  - Ensure valid database connection to mongodb [x]
+  - Checks if username has already been created [x]
+  - If not create a new user and return new user welcome message [x]
+  - If returning user and valid password share returning user welcome message [x]
+  - Error handling for existing user but wrong password [x]
+  - Ensure valid database connection to mongodb for recent prompts [x]
+  - Allow 10 most recent prompts [x]
+  - When a user submits a prompt have it saved to the database [x]
+  - Change homepage to force login before accessing other pages [x]
+  - If the user enters the url for a non homepage have it validate they are logged in otherwise direct them to homepage [x]
