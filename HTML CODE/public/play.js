@@ -1,6 +1,54 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // WebSocket initialization
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+    // Function to send WebSocket message
+    function sendMessage(message) {
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(message));
+        }
+    }
+
+    // WebSocket event listener for connection opening
+    socket.onopen = function(event) {
+        // Get the username from localStorage
+        const username = localStorage.getItem('username') || "Anonymous";
+
+        // Create a message string with the username
+        const message = `${username} is playing Mad Libs`;
+
+        // Send the message to the server
+        sendMessage(message);
+    };
+
+    socket.onmessage = function(event) {
+        console.log('Received message:', event.data);
+        // Handle incoming messages by populating the HTML element
+        const messagesDiv = document.getElementById("websocket-messages");
+        const messageParagraph = document.createElement("p");
+        messageParagraph.textContent = event.data;
+        messagesDiv.appendChild(messageParagraph);
+    };
+
+    socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = function(event) {
+        // Get the username from localStorage
+        const username = localStorage.getItem('username') || "Anonymous";
+
+        // Create a message string with the username
+        const message = `${username} left`;
+
+        // Send the message to the server
+        sendMessage(message);
+    };
+
+    // Existing functionality
     // get username
-    const username = localStorage.getItem('username');
+    let username = localStorage.getItem('username');
 
     // If username is null, set it to "Anonymous"
     if (!username) {
@@ -33,12 +81,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Check if all text boxes are filled
         if (txt1 && txt2 && txt3 && txt4 && txt5 && txt6 && txt7 && txt8 && txt9 && txt10 && txt11 && txt12) {
-
-
-
             // Generate the prompt with filled-in values
             const prompt = generatePrompt(txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12);
-
 
             // Display the prompt
             const storyTextArea = document.getElementById("story");
@@ -48,17 +92,18 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem('madLibPrompt', prompt);
             // Save the prompt to the backend
             savePromptToBackend(username, prompt);
-
+            // Send WebSocket message
+            sendMessage(`${username} submitted a prompt`);
+            
             // Clear text boxes
             clearTextBoxes();
         } else {
             // Display an error message if any text box is empty
             alert("Please fill in all the text boxes.");
         }
-
     });
 
-    // allow only numbers and letters
+    // Allow only numbers and letters
     const textInputs = document.querySelectorAll("input[type='text']");
     textInputs.forEach(function(input) {
         input.addEventListener("input", function(event) {
@@ -67,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
             event.target.value = value.replace(/[^a-zA-Z0-9]/g, '');
         });
     });
-
 
     // Add event listener to the download button
     const downloadButton = document.querySelector(".results-container button");
@@ -95,136 +139,125 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-// Add event listener to the "Email" button
-document.getElementById("emailButton").addEventListener("click", function(event) {
-    // Prevent the default form submission
-    event.preventDefault();
+    // Add event listener to the "Email" button
+    document.getElementById("emailButton").addEventListener("click", function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
 
-    // Prompt the user for their email address
-    const userEmail = prompt("Please enter your email address:");
+        // Prompt the user for their email address
+        const userEmail = prompt("Please enter your email address:");
 
-    // Check if the user entered an email address
-    if (userEmail) {
-        // Get the prompt from the textarea
-        const prompt = document.getElementById("story").value;
+        // Check if the user entered an email address
+        if (userEmail) {
+            // Get the prompt from the textarea
+            const prompt = document.getElementById("story").value;
 
-        // Check if the prompt is not empty
-        if (prompt.trim() !== "") {
-            // Send email
-            sendEmail(userEmail, prompt);
+            // Check if the prompt is not empty
+            if (prompt.trim() !== "") {
+                // Send email
+                sendEmail(userEmail, prompt);
+            } else {
+                // Display an error message if the prompt is empty
+                alert("The prompt is empty. Please generate a prompt before sending the email.");
+            }
         } else {
-            // Display an error message if the prompt is empty
-            alert("The prompt is empty. Please generate a prompt before sending the email.");
+            // Display an error message if the user cancels the prompt
+            alert("Email address not provided. Please enter your email address to send the email.");
         }
-    } else {
-        // Display an error message if the user cancels the prompt
-        alert("Email address not provided. Please enter your email address to send the email.");
+    });
+
+    // Function to generate the prompt with filled-in values
+    function generatePrompt(txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12) {
+        // Generate the prompt with filled-in values
+        const prompt = `In a ${txt1} far, far away, a(n) ${txt2} traveler embarked on a journey ${txt3}. Along the way, they encountered a ${txt4} of ${txt5} mysteries. Together, they ${txt6} through the ${txt7} landscape, feeling ${txt8} and ${txt9} at every turn. Eventually, they reached their destination, only to find themselves ${txt10} by the very thing they sought to ${txt11}. In the end, they realized that the true truth lay within themselves, waiting to be ${txt12} and shared to the world.`;
+        return prompt;
     }
-});
 
-
-});
-
-// Function to generate the prompt with filled-in values
-function generatePrompt(txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12) {
-    // Generate the prompt with filled-in values *****************************************************this will need updated once database is accessed
-    const prompt = `In a ${txt1} far, far away, a(n) ${txt2} traveler embarked on a journey ${txt3}. Along the way, they encountered a ${txt4} of ${txt5} mysteries. Together, they ${txt6} through the ${txt7} landscape, feeling ${txt8} and ${txt9} at every turn. Eventually, they reached their destination, only to find themselves ${txt10} by the very thing they sought to ${txt11}. In the end, they realized that the true truth lay within themselves, waiting to be ${txt12} and shared to the world.`;
-
-    return prompt;
-}
-
-// Function to clear text boxes after successful submission
-function clearTextBoxes() {
-    const textInputs = document.querySelectorAll("input[type='text']");
-    textInputs.forEach(function(input) {
-        input.value = '';
-    });
-}
-
-
-
-// Function to send email
-function sendEmail(email, prompt) {
-    // Define email data
-    const emailData = {
-        to: email,
-        subject: 'Mad Libs Prompt',
-        body: prompt
-    };
-
-    // Send email data to the server
-    fetch('/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(emailData)
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Email sent successfully');
-        } else {
-            throw new Error('Failed to send email');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Failed to send email');
-    });
-}
-
-// Function to save the prompt to the backend
-function savePromptToBackend(username, prompt) {
-    // Get the current date
-    const currentDate = formatDate(new Date());
-
-    // Define data to be sent to the server
-    const postData = {
-        username: username,
-        date: currentDate,
-        prompt: prompt
-    };
-
-    // Log postData to console
-    console.log('POST Data:', postData);
-
-    // Make a POST request to save the prompt to the backend
-    fetch('/api/submitPrompt', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-    })
-    .then(response => {
-        if (response.ok) {
-            clearTextBoxes();
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-
-
-// Function to format the date as DD/MM/YYYY
-function formatDate(date) {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-}
-
-
-// Function to check if user is logged in and redirect to index.html if not
-function checkLoginStatus() {
-    const loggedIn = localStorage.getItem('loggedIn');
-
-    if (!loggedIn) {
-        window.location.href = 'index.html';
+    // Function to clear text boxes after successful submission
+    function clearTextBoxes() {
+        const textInputs = document.querySelectorAll("input[type='text']");
+        textInputs.forEach(function(input) {
+            input.value = '';
+        });
     }
-}
 
-// Check login status when page is loaded
-window.onload = checkLoginStatus;
+    // Function to send email
+    function sendEmail(email, prompt) {
+        // Define email data
+        const emailData = {
+            to: email,
+            subject: 'Mad Libs Prompt',
+            body: prompt
+        };
+
+        // Send email data to the server
+        fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emailData)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Email sent successfully');
+            } else {
+                throw new Error('Failed to send email');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to send email');
+        });
+    }
+
+    // Function to save the prompt to the backend
+    function savePromptToBackend(username, prompt) {
+        // Get the current date
+        const currentDate = formatDate(new Date());
+
+        // Define data to be sent to the server
+        const postData = {
+            username: username,
+            date: currentDate,
+            prompt: prompt
+        };
+
+        // Make a POST request to save the prompt to the backend
+        fetch('/api/submitPrompt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => {
+            if (response.ok) {
+                clearTextBoxes();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Function to format the date as DD/MM/YYYY
+    function formatDate(date) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
+    // Function to check if user is logged in and redirect to index.html if not
+    function checkLoginStatus() {
+        const loggedIn = localStorage.getItem('loggedIn');
+
+        if (!loggedIn) {
+            window.location.href = 'index.html';
+        }
+    }
+
+    // Check login status when page is loaded
+    checkLoginStatus();
+});

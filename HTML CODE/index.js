@@ -1,4 +1,6 @@
 const express = require('express');
+const http = require('http');
+const WebSocket = require('ws');
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
 const app = express();
@@ -33,6 +35,52 @@ app.use(express.static('public'));
 // Router for service endpoints
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+// WebSocket server
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+// Set to store all connected WebSocket clients
+const clients = new Set();
+
+// Broadcast function to send a message to all connected clients
+function broadcast(message) {
+    clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(message);
+        }
+    });
+}
+
+// Handle WebSocket connections
+wss.on('connection', (ws) => {
+    console.log('New WebSocket connection');
+
+    // Add the new WebSocket connection to the set of clients
+    clients.add(ws);
+
+    // Handle incoming messages
+    ws.on('message', (message) => {
+        // Convert the buffer to a string
+        const messageString = message.toString('utf-8');
+        
+        // Log and broadcast the received message
+        console.log('Received message:', messageString);
+        broadcast(messageString); // Broadcast the message string
+    });
+
+    // Handle WebSocket disconnections
+    ws.on('close', () => {
+        console.log('WebSocket connection closed');
+        // Remove the disconnected WebSocket connection from the set of clients
+        clients.delete(ws);
+    });
+
+    // Handle WebSocket errors
+    ws.on('error', (error) => {
+        console.error('WebSocket error:', error);
+    });
+});
 
 // Endpoint for user authentication
 apiRouter.post('/auth/login', async (req, res) => {
@@ -104,6 +152,6 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
