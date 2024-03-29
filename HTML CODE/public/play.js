@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     socket.onmessage = function(event) {
-        console.log('Received message:', event.data);
         // Handle incoming messages by populating the HTML element
         const messagesDiv = document.getElementById("websocket-messages");
         const messageParagraph = document.createElement("p");

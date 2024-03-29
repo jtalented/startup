@@ -54,8 +54,6 @@ function broadcast(message) {
 
 // Handle WebSocket connections
 wss.on('connection', (ws) => {
-    console.log('New WebSocket connection');
-
     // Add the new WebSocket connection to the set of clients
     clients.add(ws);
 
@@ -65,13 +63,11 @@ wss.on('connection', (ws) => {
         const messageString = message.toString('utf-8');
         
         // Log and broadcast the received message
-        console.log('Received message:', messageString);
         broadcast(messageString); // Broadcast the message string
     });
 
     // Handle WebSocket disconnections
     ws.on('close', () => {
-        console.log('WebSocket connection closed');
         // Remove the disconnected WebSocket connection from the set of clients
         clients.delete(ws);
     });
