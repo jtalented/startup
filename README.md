@@ -77,3 +77,12 @@ These technologies will be used as follows.
   - Change homepage to force login before accessing other pages [x]
   - If the user enters the url for a non homepage have it validate they are logged in otherwise direct them to homepage [x]
   - Encrypts passwords [x]
+
+## Websocket
+- Added Server side (backend in index.js) websocket listening [x]
+- Added client side websocket message listening [x]
+- Added Server side websocket sending and broadcasting to all clients [x]
+- Added client side message sending to the server [x]
+- Added message interpretation on both ends [x]
+- In play.js sends a message when the user loads onto the play page notifying all users that they are playing [x]
+- In play.js sends a message to all users when a client submits a prompt [x]
