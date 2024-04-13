@@ -1,0 +1,27 @@
+{
+  "name": "startup-service",
+  "version": "1.0.0",
+  "description": "This demonstrates a service for a web application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "mongodb": "^4.17.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "vite": "^5.2.8"
+  }
+}

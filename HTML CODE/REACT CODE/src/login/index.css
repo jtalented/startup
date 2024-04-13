@@ -1,0 +1,62 @@
+/* Apply styles to the header */
+header {
+    background-color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  /* Apply styles to the logo image */
+  img {
+    height: 64px;
+    margin-right: 8px;
+  }
+  
+  /* Apply styles to the navigation links */
+  nav {
+    margin-right: 10px;
+  }
+  
+  nav a {
+    color: #ff00ff;
+  }
+  
+  /* Apply styles to input fields */
+  .input-field input[type="text"],
+  .input-field input[type="password"] {
+    background-color: #333;
+    color: #00ff00;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+  
+  /* Apply styles to buttons */
+  .button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Apply styles to sections */
+  section {
+    margin: 20px 0;
+  }
+  
+  /* Apply styles to paragraphs */
+  p {
+    color: #00ffff;
+  }
+  
+  /* Apply styles to links */
+  a {
+    color: #ffff00;
+  }
+  
+  
