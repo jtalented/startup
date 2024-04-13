@@ -86,3 +86,13 @@ These technologies will be used as follows.
 - Added message interpretation on both ends [x]
 - In play.js sends a message when the user loads onto the play page notifying all users that they are playing [x]
 - In play.js sends a message to all users when a client submits a prompt [x]
+
+
+## React (React code in the HTML CODE folder/ REACT CODE)
+- COde Reorganized [x]
+- Converting to react bootstrap and enabling react [x]
+- Created App and view components [x]
+- Created app jsx files [x]
+- Moved login and play logic from js to jsx and hooks [x]
+- Moved prompts and about from js to jsx and hooks [x]
+- Implemented router [x]
